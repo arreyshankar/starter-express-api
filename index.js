@@ -16,7 +16,6 @@ app.get('/TEST',(req,res) => {
 	res.status(200).json({ 
         message: "JSON Data received successfully" 
 	}); 
-    res.send('GET METHOD RESPONSE FROM SERVER')
 })
 
 app.listen(process.env.PORT || 3000)
