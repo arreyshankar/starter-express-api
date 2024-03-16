@@ -3,10 +3,7 @@ const app = express()
 const mongoClient = require('mongodb').MongoClient
 const url = "mongodb+srv://sarvesh:mevo123@testingcluster.tg9uqrx.mongodb.net/?retryWrites=true&w=majority&appName=TestingCluster"
 
-app.all('/', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
-})
+app.use(express.json())
 
 mongoClient.connect(url, (err, db) => {
 
@@ -71,5 +68,6 @@ mongoClient.connect(url, (err, db) => {
 
 })
 
-
-app.listen(process.env.PORT || 3000)
+app.listen(3000, () => {
+    console.log("Listening on port 3000...")
+})
