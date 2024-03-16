@@ -6,7 +6,7 @@ app.all('/', (req, res) => {
     res.send('Yo!')
 })
 
-app.post('/', function requestHandler(req, res) {
+app.post('/TEST', function requestHandler(req, res) {
     res.end('Hello, World!');
   });
 
