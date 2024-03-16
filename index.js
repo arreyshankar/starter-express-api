@@ -6,8 +6,8 @@ app.all('/', (req, res) => {
     res.send('Yo!')
 })
 
-app.post('/TEST',(req,res)=>{
-    res.send("TEST123")
-})
+app.post('/', function requestHandler(req, res) {
+    res.end('Hello, World!');
+  });
 
 app.listen(process.env.PORT || 3000)
