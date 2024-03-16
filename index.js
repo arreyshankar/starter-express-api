@@ -3,14 +3,14 @@ const app = express()
 const bodyParser = require('body-parser'); 
 
 app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: false })); 
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('Yo!')
 })
 
-app.get('/TEST',(req,res) => {
+app.get('/TEST',function(req,res){
     var data = req.body.data; 
 	console.log(data); 
 	res.status(200).json({ 
