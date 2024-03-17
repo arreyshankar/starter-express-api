@@ -1,6 +1,10 @@
 const express = require('express')
+const { MongoClient } = require('mongodb');
 const app = express()
 const bodyParser = require('body-parser'); 
+const PORT = 3000
+const uri = "mongodb+srv://sarvesh:mevo123@testingcluster.tg9uqrx.mongodb.net/?retryWrites=true&w=majority&appName=TestingCluster";
+const client = new MongoClient(uri);
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false })); 
@@ -10,13 +14,9 @@ app.all('/', (req, res) => {
     res.send('Yo!')
 })
 
-app.get('/TEST',function(req,res){
-    var data = req.body.data; 
-	console.log(data); 
-    res.send("SUCCESSSSSSSSSSS")
-	//res.status(200).json({ 
-    //    message: "JSON Data received successfully" 
-	//}); 
-})
-
-app.listen(process.env.PORT || 3000)
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+});
