@@ -13,9 +13,10 @@ app.all('/', (req, res) => {
 app.get('/TEST',function(req,res){
     var data = req.body.data; 
 	console.log(data); 
-	res.status(200).json({ 
-        message: "JSON Data received successfully" 
-	}); 
+    res.send("SUCCESSSSSSSSSSS")
+	//res.status(200).json({ 
+    //    message: "JSON Data received successfully" 
+	//}); 
 })
 
 app.listen(process.env.PORT || 3000)
