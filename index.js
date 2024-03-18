@@ -27,7 +27,11 @@ app.all('/', (req, res) => {
 app.post('/data',(req,res) => {
   const data = req.body
   console.log(data)
-  res.send("message okay")
+  obj = {
+    id : 1,
+    name : "shankar"
+  }
+  res.end(JSON.stringify(obj))
 })
 
 connectDB().then(() => {
