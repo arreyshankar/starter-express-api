@@ -18,9 +18,6 @@ app.post('/test',(req,res)=>{
     data: req.body.data
   }
   insert(data).catch(console.dir)
-  if(insert(data).then()){
-    res.send("success")
-  }
 
 })
 
