@@ -56,9 +56,9 @@ app.post('/signin', async(req,res) => {
   if(result != null){
     var obj = { message: "Login Successfully" }
     res.status(200).send(JSON.stringify(result))
-  } else {
+  } else if(result == null){
     var obj = { message: "Invalid Credentials" }
-    res.send(JSON.stringify(obj))
+    res.status(202).send(JSON.stringify(obj))
   }
 })
 
