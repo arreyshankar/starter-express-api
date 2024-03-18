@@ -43,6 +43,20 @@ app.post('/signup', async(req,res) => {
   }
 })
 
+app.post('/signin', async(req,res) => {
+  const user = {
+    email: req.body.email,
+    password: req.body.password
+  }
+
+  const users = database.collection("users")
+  const result = await users.findOne(user)
+  if(result != null){
+    var obj = { message: "Login Successfully" }
+    res.send(JSON.stringify(obj))
+  }
+})
+
 
 app.listen(PORT, () => {
   console.log("listening for requests");
