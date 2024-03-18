@@ -70,7 +70,9 @@ app.get('/GetRooms', async(req,res) => {
   const rooms = database.collection('rooms')
   const result = await rooms.find({}).toArray()
   if(result != null){
-    res.json(result)
+    //res.json(result)
+    var obj = JSON.stringify(result)
+    console.log(obj)
     //res.status(200).send(JSON.stringify(result))
   } else if(result == null){
     var obj = { message: "Error while Adding" }
