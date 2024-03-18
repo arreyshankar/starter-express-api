@@ -68,7 +68,7 @@ app.post('/AddRoom', async(req,res) => {
 
 app.get('/GetRooms', async(req,res) => {
   const rooms = database.collection('rooms')
-  const result = await rooms.find().toArray()
+  const result = await rooms.find({}).toArray()
   if(result != null){
     res.status(200).send(JSON.stringify(result))
   } else if(result == null){
