@@ -36,13 +36,10 @@ app.post('/signup',(req,res) => {
   }
 
   if(insertUser(user)){
-    res.send("success")
+    res.send("SignUp Successfull")
   } else {
-    res.send("Failed")
+    res.send("SignUp Failed")
   }
-
-  
-
 })
 
 async function insertUser(doc){
