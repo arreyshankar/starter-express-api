@@ -8,8 +8,8 @@ const uri = "mongodb+srv://sarvesh:mevo123@testingcluster.tg9uqrx.mongodb.net/?r
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false })); 
 const client = new MongoClient(uri);
-const database = client.db('mevo');
-const users = database.collection('users');
+//const database = client.db('mevo');
+//const users = database.collection('users');
 
 /*
 const connectDB = async () => {
@@ -29,23 +29,26 @@ app.all('/', (req, res) => {
 })
 
 app.post('/signup',(req,res) => {
-  //const user = req.body
   const user = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password
   }
-  console.log(user)
-  const result = users.insertOne(user);
-  if(result != null){
-    res.send("Success")
-  } else {
-    res.send("failed")
-  }
 
-  //obj = { id : 1, name : "shankar" }
-  //res.end(JSON.stringify(obj))
+  insertUser(user)
+
 })
+
+async function insertUser(doc){
+  try {
+    const database = client.db("mevo");
+    const haiku = database.collection("users");
+    const result = await haiku.insertOne(doc);
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+  } finally {
+    await client.close();
+  }
+}
 
 app.listen(PORT, () => {
   console.log("listening for requests");
