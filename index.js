@@ -38,7 +38,6 @@ app.post('/signin', async(req,res) => {
 
   const users = database.collection("users")
   const result = await users.findOne(user)
-  console.log(result)
   if(result != null){
     var obj = { message: "Login Successfully" }
     res.status(200).send(JSON.stringify(result))
@@ -60,6 +59,17 @@ app.post('/AddRoom', async(req,res) => {
   console.log(`A Room document was inserted with the _id: ${result.insertedId}`);
   if(result != null){
     var obj = { message: "Room Added Successfully" }
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    var obj = { message: "Error while Adding" }
+    res.status(201).send(JSON.stringify(obj))
+  }
+})
+
+app.get('/GetRooms', async(req,res) => {
+  const rooms = database.collection('rooms')
+  const result = await rooms.find()
+  if(result != null){
     res.status(200).send(JSON.stringify(result))
   } else if(result == null){
     var obj = { message: "Error while Adding" }
