@@ -7,6 +7,10 @@ const uri = "mongodb+srv://sarvesh:mevo123@testingcluster.tg9uqrx.mongodb.net/?r
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false })); 
 
+const schema = new mongoose.Schema({ name: String, email: String, password: String });
+const User = mongoose.model('User', schema);
+
+
 const connectDB = async () => {
     try {
       const conn = await mongoose.connect(uri);
@@ -26,6 +30,8 @@ app.all('/', (req, res) => {
 app.post('/signup',(req,res) => {
   const user = req.body
   console.log(user)
+  User.create(user)
+  res.send("Success")
   //obj = { id : 1, name : "shankar" }
   //res.end(JSON.stringify(obj))
 })
