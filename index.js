@@ -18,7 +18,7 @@ app.post('/test',(req,res)=>{
     data: req.body.data
   }
   insert(data).catch(console.dir)
-  res.send("Success11111")
+  res.send(JSON.stringify("{data: 112}"))
 
 })
 
