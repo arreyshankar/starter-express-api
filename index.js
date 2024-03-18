@@ -52,7 +52,7 @@ app.post('/signin', async(req,res) => {
   const users = database.collection("users")
   const result = await users.findOne(user)
   console.log(result)
-  if(result != null){
+  if(result.email == req.body.email && result.password == req.body.password){
     var obj = { message: "Login Successfully" }
     res.send(JSON.stringify(obj))
   } else {
