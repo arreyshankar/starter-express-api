@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 const app = express()
 const bodyParser = require('body-parser'); 
 const PORT = 3000
-const uri = "mongodb+srv://sarvesh:mevo123@testingcluster.tg9uqrx.mongodb.net/?retryWrites=true&w=majority&appName=TestingCluster";
+const uri = "mongodb+srv://sarveshkumar10101:sarvesh121@testingcluster.tg9uqrx.mongodb.net/?retryWrites=true&w=majority&appName=TestingCluster";
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false })); 
 const client = new MongoClient(uri);
