@@ -27,10 +27,7 @@ app.all('/', (req, res) => {
 app.post('/data',(req,res) => {
   const data = req.body
   console.log(data)
-  response = {  
-    message: "okay"
-};  
-  res.end(JSON.stringify(express.response))
+  res.send("message okay")
 })
 
 connectDB().then(() => {
