@@ -22,24 +22,12 @@ app.post('/test', async(req,res)=>{
   const result = await collection.insertOne(data)
   console.log(`A document was inserted with the _id: ${result.insertedId}`);
   if(result.insertedId != null){
-
-    var obj = {status: "okay"}
+    var obj = {status: "Inserted"}
     res.send(JSON.stringify(obj))
   }
   
 
 })
-
-async function insert(data){
-  try {
-    const test = database.collection("testAndroid");
-    const result = await test.insertOne(data);
-    return result.insertedId;
-    //console.log(`A document was inserted with the _id: ${result.insertedId}`);
-  } finally {
-    await client.close();
-  }
-}
 
 app.post('/signup',(req,res) => {
   const user = {
