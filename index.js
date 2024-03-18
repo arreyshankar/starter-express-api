@@ -24,30 +24,25 @@ app.post('/test', async(req,res)=>{
   if(result.insertedId != null){
     var obj = {data: "Inserted on DB"}
     res.send(JSON.stringify(obj))
-    //res.send("Inserted++")
   }
-  
-
 })
 
-app.post('/signup',(req,res) => {
+app.post('/signup', async(req,res) => {
   const user = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password
   }
-  insertUser(user).catch(console.dir)
+
+  const users = database.collection("users")
+  const result = await collection.insertOne(data)
+  console.log(`A document was inserted with the _id: ${result.insertedId}`);
+  if(result.insertedId != null){
+    var obj = { message: "Registered Successfully" }
+    res.send(JSON.stringify(obj))
+  }
 })
 
-async function insertUser(doc){
-  try {
-    const users = database.collection("users");
-    const result = await users.insertOne(doc);
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
-  } finally {
-    await client.close();
-  }
-}
 
 app.listen(PORT, () => {
   console.log("listening for requests");
