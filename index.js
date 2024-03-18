@@ -30,7 +30,7 @@ async function insert(data){
     const result = await test.insertOne(data);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
-    await client.close();
+    //await client.close();
   }
 }
 
