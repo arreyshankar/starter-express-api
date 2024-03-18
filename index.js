@@ -66,7 +66,7 @@ app.post('/AddRoom', async(req,res) => {
   }
 })
 
-app.post('/GetRooms', async(req,res) => {
+app.get('/GetRooms', async(req,res) => {
   const rooms = database.collection('rooms')
   const result = await rooms.find().toArray()
   if(result != null){
