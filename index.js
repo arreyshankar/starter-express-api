@@ -22,9 +22,9 @@ app.post('/test', async(req,res)=>{
   const result = await collection.insertOne(data)
   console.log(`A document was inserted with the _id: ${result.insertedId}`);
   if(result.insertedId != null){
-    //var obj = {status: "Inserted"}
-    //res.send(JSON.stringify(obj))
-    res.send("Inserted++")
+    var obj = {data: "Inserted on DB"}
+    res.send(JSON.stringify(obj))
+    //res.send("Inserted++")
   }
   
 
