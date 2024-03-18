@@ -35,11 +35,7 @@ app.post('/signup',(req,res) => {
     password: req.body.password
   }
 
-  if(insertUser(user)){
-    res.send("SignUp Successfull")
-  } else {
-    res.send("SignUp Failed")
-  }
+  res.send(insertUser(user).catch(console.dir))
 })
 
 async function insertUser(doc){
