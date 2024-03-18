@@ -35,7 +35,7 @@ app.post('/signup', async(req,res) => {
   }
 
   const users = database.collection("users")
-  const result = await collection.insertOne(data)
+  const result = await users.insertOne(data)
   console.log(`A document was inserted with the _id: ${result.insertedId}`);
   if(result.insertedId != null){
     var obj = { message: "Registered Successfully" }
