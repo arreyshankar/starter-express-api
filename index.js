@@ -35,7 +35,13 @@ app.post('/signup',(req,res) => {
     password: req.body.password
   }
 
-  insertUser(user)
+  if(insertUser(user)){
+    res.send("success")
+  } else {
+    res.send("Failed")
+  }
+
+  
 
 })
 
@@ -45,6 +51,7 @@ async function insertUser(doc){
     const haiku = database.collection("users");
     const result = await haiku.insertOne(doc);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    return true
   } finally {
     await client.close();
   }
