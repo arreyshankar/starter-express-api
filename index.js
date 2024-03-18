@@ -49,6 +49,22 @@ app.post('/signin', async(req,res) => {
   }
 })
 
+app.post('/AddRoom', async(req,res) => {
+  const room = {
+    roomNo: req.body.roomNo,
+    roomName: req.body.roomName,
+    isAvailable: req.body.isAvailable
+  }
+
+  const rooms = database.collection("rooms")
+  const result = await users.insertOne(rooms)
+  console.log(`A Room document was inserted with the _id: ${result.insertedId}`);
+  if(result.insertedId != null){
+    var obj = { message: "Room Added" }
+    res.send(JSON.stringify(obj))
+  }
+})
+
 app.listen(PORT, () => {
   console.log("listening for requests");
 })
