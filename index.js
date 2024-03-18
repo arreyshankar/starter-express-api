@@ -30,7 +30,7 @@ async function insert(data){
     const test = database.collection("testAndroid");
     const result = await test.insertOne(data);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
-    return true
+    return 1
   } finally {
     await client.close();
   }
