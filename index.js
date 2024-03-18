@@ -14,19 +14,6 @@ app.all('/', (req, res) => {
     res.send('Yo it worked!')
 })
 
-app.post('/test', async(req,res)=>{
-  const data = {
-    data: req.body.data
-  }
-  const collection = database.collection("testAndroid");
-  const result = await collection.insertOne(data)
-  console.log(`A document was inserted with the _id: ${result.insertedId}`);
-  if(result.insertedId != null){
-    var obj = {data: "Inserted on DB"}
-    res.send(JSON.stringify(obj))
-  }
-})
-
 app.post('/signup', async(req,res) => {
   const user = {
     name: req.body.name,
@@ -61,7 +48,6 @@ app.post('/signin', async(req,res) => {
     res.status(205).send(JSON.stringify(obj))
   }
 })
-
 
 app.listen(PORT, () => {
   console.log("listening for requests");
