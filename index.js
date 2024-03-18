@@ -24,6 +24,15 @@ app.all('/', (req, res) => {
     res.send('Yo it worked!')
 })
 
+app.post('/data',(req,res) => {
+  const data = req.body
+  console.log(data)
+  response = {  
+    message: "okay"
+};  
+  res.end(JSON.stringify(express.response))
+})
+
 connectDB().then(() => {
     app.listen(PORT, () => {
         console.log("listening for requests");
