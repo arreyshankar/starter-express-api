@@ -23,12 +23,6 @@ app.all('/', (req, res) => {
     res.send('Yo it worked!')
 })
 
-const user = new Schema({
-  name: String,
-  email: String,
-  password: String
-});
-
 app.post('/signup',(req,res) => {
   const user = req.body
   console.log(user)
