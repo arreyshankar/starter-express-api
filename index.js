@@ -68,10 +68,15 @@ app.post('/AddRoom', async(req,res) => {
 
 app.get('/GetRooms', async(req,res) => {
   const rooms = database.collection('rooms')
-  const result = await rooms.find()
+  const result = await rooms.find().toArray()
+
+  rooms.find().forEach(e=>{
+    console.log(e)
+  })
+
   if(result != null){
     var obj = JSON.stringify(result)
-    console.log(obj)
+    //console.log(obj)
     res.status(200).send(JSON.stringify(result))
   } else if(result == null){
     var obj = { message: "Error while Adding" }
