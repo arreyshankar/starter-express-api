@@ -48,7 +48,6 @@ async function insertUser(doc){
     const haiku = database.collection("users");
     const result = await haiku.insertOne(doc);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
-    return true
   } finally {
     await client.close();
   }
