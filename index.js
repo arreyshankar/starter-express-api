@@ -30,8 +30,8 @@ const user = new Schema({
 });
 
 app.post('/signup',(req,res) => {
-  const data = req.body
-  //console.log(data)
+  const user = req.body
+  console.log(user)
   //obj = { id : 1, name : "shankar" }
   //res.end(JSON.stringify(obj))
 })
