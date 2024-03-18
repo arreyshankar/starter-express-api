@@ -51,6 +51,7 @@ app.post('/signin', async(req,res) => {
 
   const users = database.collection("users")
   const result = await users.findOne(user)
+  console.log(result)
   if(result != null){
     var obj = { message: "Login Successfully" }
     res.send(JSON.stringify(obj))
