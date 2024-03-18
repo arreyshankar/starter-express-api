@@ -18,6 +18,9 @@ app.post('/test',(req,res)=>{
     data: req.body.data
   }
   insert(data).catch(console.dir)
+  if(insert().then()){
+    res.send("success")
+  }
 
 })
 
@@ -27,6 +30,7 @@ async function insert(data){
     const test = database.collection("testAndroid");
     const result = await test.insertOne(data);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    return true
   } finally {
     await client.close();
   }
