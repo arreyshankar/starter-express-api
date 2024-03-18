@@ -7,6 +7,7 @@ const uri = "mongodb+srv://sarveshkumar10101:sarvesh121@testingcluster.tg9uqrx.m
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false })); 
 const client = new MongoClient(uri);
+const database = client.db("mevo");
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
@@ -17,18 +18,21 @@ app.post('/test',(req,res)=>{
   const data = {
     data: req.body.data
   }
-  insert(data).catch(console.dir)
-  var obj = {status: "okay"}
-  res.send(JSON.stringify(obj))
+  const id = insert(data).catch(console.dir)
+  if(id != null){
+    console.log(`A document was inserted with the _id: ${id}`);
+    var obj = {status: "okay"}
+    res.send(JSON.stringify(obj))
+  }
 
 })
 
 async function insert(data){
   try {
-    const database = client.db("mevo");
     const test = database.collection("testAndroid");
     const result = await test.insertOne(data);
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    return result.insertedId;
+    //console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
     await client.close();
   }
@@ -45,7 +49,6 @@ app.post('/signup',(req,res) => {
 
 async function insertUser(doc){
   try {
-    const database = client.db("mevo");
     const users = database.collection("users");
     const result = await users.insertOne(doc);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
