@@ -4,7 +4,6 @@ const app = express()
 const bodyParser = require('body-parser'); 
 const PORT = 3000
 const uri = "mongodb+srv://sarvesh:mevo123@testingcluster.tg9uqrx.mongodb.net/?retryWrites=true&w=majority&appName=TestingCluster";
-
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false })); 
 
@@ -24,14 +23,17 @@ app.all('/', (req, res) => {
     res.send('Yo it worked!')
 })
 
-app.post('/data',(req,res) => {
+const user = new Schema({
+  name: String,
+  email: String,
+  password: String
+});
+
+app.post('/signup',(req,res) => {
   const data = req.body
-  console.log(data)
-  obj = {
-    id : 1,
-    name : "shankar"
-  }
-  res.end(JSON.stringify(obj))
+  //console.log(data)
+  //obj = { id : 1, name : "shankar" }
+  //res.end(JSON.stringify(obj))
 })
 
 connectDB().then(() => {
