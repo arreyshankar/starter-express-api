@@ -17,13 +17,7 @@ app.post('/test',(req,res)=>{
   const data = {
     data: req.body.data
   }
-  
-  const database = client.db("mevo");
-  const test = database.collection("testAndroid");
-  const result = test.insertOne(data);
-  console.log(`A document was inserted with the _id: ${result.insertedId}`);
-  //insert(data).catch(console.dir)
-  
+  insert(data).catch(console.dir)
   var obj = {status: "okay"}
   res.send(JSON.stringify(obj))
 
@@ -31,9 +25,12 @@ app.post('/test',(req,res)=>{
 
 async function insert(data){
   try {
-   
+    const database = client.db("mevo");
+    const test = database.collection("testAndroid");
+    const result = await test.insertOne(data);
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
-    //await client.close();
+    await client.close();
   }
 }
 
