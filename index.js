@@ -14,16 +14,19 @@ app.all('/', (req, res) => {
     res.send('Yo it worked!')
 })
 
-app.post('/test',(req,res)=>{
+app.post('/test', async(req,res)=>{
   const data = {
     data: req.body.data
   }
-  const id = insert(data).catch(console.dir)
-  if(id != null){
-    console.log(`A document was inserted with the _id: ${id}`);
+  const collection = database.collection("testAndroid");
+  const result = await collection.insertOne(data)
+  console.log(`A document was inserted with the _id: ${result.insertedId}`);
+  if(result.insertedId != null){
+
     var obj = {status: "okay"}
     res.send(JSON.stringify(obj))
   }
+  
 
 })
 
