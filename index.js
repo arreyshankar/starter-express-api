@@ -35,7 +35,7 @@ app.post('/signup',(req,res) => {
     password: req.body.password
   }
 
-  res.send(insertUser(user).catch(console.dir))
+  insertUser(user).catch(res.send)
 })
 
 async function insertUser(doc){
