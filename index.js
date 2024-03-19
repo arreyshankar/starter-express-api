@@ -13,6 +13,8 @@ const database = client.db("mevo");
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('Yo it worked!')
+    fs.readFile('sdfsd.png', function(err, data){
+    console.log(data);
 })
 
 app.post('/signup', async(req,res) => {
