@@ -12,8 +12,9 @@ const database = client.db("mevo");
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
-    res.send('Yo it worked!')
     fs.readFile('sdfsd.png', function(err, data){
+    res.writeHead(200, {'Content-Type': 'image/jpeg'})
+    res.end(data)
     console.log(data);
 })
 
