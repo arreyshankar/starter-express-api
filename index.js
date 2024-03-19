@@ -1,8 +1,5 @@
 const express = require('express')
 const fs = require("fs")
-//const AWS = require("aws-sdk");
-//const s3 = new AWS.S3()
-//const fs = require('@cyclic.sh/s3fs')('cyclic-good-rose-katydid-boot-ap-southeast-1')
 const { MongoClient } = require("mongodb");
 const app = express()
 const bodyParser = require('body-parser'); 
@@ -107,9 +104,6 @@ app.post('/AddPatient', async(req,res) => {
     PatientGender : req.body.PatientGender,
   }
 
-  //const buffer = req.body.PatientImage
-  //fs.writeFileSync(`Images/${req.body.PatientName}.jpg`, buffer)
-  //console.log(req.body.PatientImage)
   let base64Image = req.body.PatientImage.split(';base64,').pop();
   fs.writeFile(`../Images/${req.body.PatientName}.png`, base64Image, {encoding: 'base64'}, function(err) {
     console.log('File created');
