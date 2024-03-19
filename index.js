@@ -1,5 +1,7 @@
 const express = require('express')
 const fs = require("fs")
+const AWS = require("aws-sdk");
+const s3 = new AWS.S3()
 const { MongoClient } = require("mongodb");
 const app = express()
 const bodyParser = require('body-parser'); 
@@ -104,9 +106,9 @@ app.post('/AddPatient', async(req,res) => {
     PatientGender : req.body.PatientGender,
   }
 
-  const buffer = req.body.PatientImage
-  fs.writeFileSync(`Images/${req.body.PatientName}.jpg`, buffer)
-
+  //const buffer = req.body.PatientImage
+  //fs.writeFileSync(`Images/${req.body.PatientName}.jpg`, buffer)
+  console.log(req.body.PatientImage)
   const patients = database.collection("patients")
   const result = await patients.insertOne(patient)
   console.log(`A Patient document was inserted with the _id: ${result.insertedId}`);
