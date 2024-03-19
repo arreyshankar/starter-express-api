@@ -74,7 +74,7 @@ app.get('/GetRooms', async(req,res) => {
     console.log(obj)
     res.status(200).send(JSON.stringify(Object.assign({}, result)))
   } else if(result == null){
-    var obj = { message: "Error while Adding" }
+    var obj = { message: "Error Getting rooms" }
     res.status(201).send(JSON.stringify(obj))
   }
 })
