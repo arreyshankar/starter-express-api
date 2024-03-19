@@ -94,6 +94,16 @@ app.get('/GetRooms', async(req,res) => {
   }
 })
 
+app.get('/GetDoctors', async(req,res) => {
+  const doctors = database.collection('doctors')
+  const result = await doctors.find().toArray()
+  if(result != null){
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    res.status(201).send(JSON.stringify({ message: "Error Getting rooms" }))
+  }
+})
+
 app.post('/AddPatient', async(req,res) => {
   const patient = {
     PatientName : req.body.PatientName,
