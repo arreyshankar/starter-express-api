@@ -69,7 +69,6 @@ app.post('/AddRoom', async(req,res) => {
 app.post('/EditRoom', async(req,res) => {
   const Room = {
     roomNo: req.body.roomNo,
-    roomName: req.body.roomName,
     isAvailable: req.body.isAvailable
   }
 
