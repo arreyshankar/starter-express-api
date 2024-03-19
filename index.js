@@ -49,9 +49,9 @@ app.post('/signin', async(req,res) => {
 
 app.post('/AddRoom', async(req,res) => {
   const room = {
-    roomNo: req.body.RoomNo,
-    roomName: req.body.RoomName,
-    isAvailable: req.body.Available
+    roomNo: req.body.roomNo,
+    roomName: req.body.roomName,
+    isAvailable: req.body.isAvailable
   }
 
   const rooms = database.collection("rooms")
