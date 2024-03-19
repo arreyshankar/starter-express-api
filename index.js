@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require("fs")
 const { MongoClient } = require("mongodb");
 const app = express()
 const bodyParser = require('body-parser'); 
@@ -102,6 +103,9 @@ app.post('/AddPatient', async(req,res) => {
     PatientAddress : req.body.PatientAddress,
     PatientGender : req.body.PatientGender,
   }
+
+  const buffer = req.body.PatientImage
+  fs.writeFileSync(`Images/${req.body.PatientName}.jpg`, buffer)
 
   const patients = database.collection("patients")
   const result = await patients.insertOne(patient)
