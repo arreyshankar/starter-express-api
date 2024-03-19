@@ -66,6 +66,25 @@ app.post('/AddRoom', async(req,res) => {
   }
 })
 
+app.post('/EditRoom', async(req,res) => {
+  const Room = {
+    roomNo: req.body.roomNo,
+    roomName: req.body.roomName,
+    isAvailable: req.body.isAvailable
+  }
+
+  const rooms = database.collection("rooms")
+  const result = await rooms.updateOne({ roomNo : req.body.roomNo}, { $set : { isAvailable : req.body.isAvailable } })
+  console.log(`A Room document was Updated with the _id: ${result.insertedId}`);
+  if(result != null){
+    var obj = { message: "Room Updated Successfully" }
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    var obj = { message: "Error while Updating Room" }
+    res.status(201).send(JSON.stringify(obj))
+  }
+})
+
 app.get('/GetRooms', async(req,res) => {
   const rooms = database.collection('rooms')
   const result = await rooms.find().toArray()
