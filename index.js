@@ -94,6 +94,27 @@ app.get('/GetRooms', async(req,res) => {
   }
 })
 
+app.post('/AddPatient', async(req,res) => {
+  const patient = {
+    PatientName : req.body.PatientName,
+    PatientAge : req.body.PatientAge,
+    PatientContact : req.body.PatientContact,
+    PatientAddress : req.body.PatientAddress,
+    PatientGender : req.body.PatientGender,
+  }
+
+  const patients = database.collection("patients")
+  const result = await rooms.insertOne(patient)
+  console.log(`A Patient document was inserted with the _id: ${result.insertedId}`);
+  if(result != null){
+    var obj = { message: "Patient Added Successfully" }
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    var obj = { message: "Error while Adding" }
+    res.status(201).send(JSON.stringify(obj))
+  }
+})
+
 app.listen(PORT, () => {
   console.log("listening for requests");
 })
