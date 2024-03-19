@@ -12,10 +12,6 @@ const database = client.db("mevo");
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
-    fs.readFile('sdfsd.png', function(err, data){
-    res.writeHead(200, {'Content-Type': 'image/jpeg'})
-    res.end(data)
-    console.log(data);
 })
 
 app.post('/signup', async(req,res) => {
