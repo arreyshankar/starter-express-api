@@ -1,7 +1,7 @@
 const express = require('express')
-const fs = require("fs")
-const AWS = require("aws-sdk");
-const s3 = new AWS.S3()
+//const fs = require("fs")
+//const AWS = require("aws-sdk");
+//const s3 = new AWS.S3()
 const { MongoClient } = require("mongodb");
 const app = express()
 const bodyParser = require('body-parser'); 
