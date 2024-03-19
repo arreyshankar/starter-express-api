@@ -111,7 +111,7 @@ app.post('/AddPatient', async(req,res) => {
   //fs.writeFileSync(`Images/${req.body.PatientName}.jpg`, buffer)
   //console.log(req.body.PatientImage)
   let base64Image = req.body.PatientImage.split(';base64,').pop();
-  fs.writeFile(`${req.body.PatientName}.png`, base64Image, {encoding: 'base64'}, function(err) {
+  fs.writeFile(`../Images/${req.body.PatientName}.png`, base64Image, {encoding: 'base64'}, function(err) {
     console.log('File created');
 });
   const patients = database.collection("patients")
