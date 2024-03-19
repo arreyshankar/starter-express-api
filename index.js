@@ -70,12 +70,9 @@ app.get('/GetRooms', async(req,res) => {
   const rooms = database.collection('rooms')
   const result = await rooms.find().toArray()
   if(result != null){
-    var obj = JSON.stringify(Object.assign({}, result))
-    console.log(obj)
     res.status(200).send(JSON.stringify(Object.assign({}, result)))
   } else if(result == null){
-    var obj = { message: "Error Getting rooms" }
-    res.status(201).send(JSON.stringify(obj))
+    res.status(201).send(JSON.stringify({ message: "Error Getting rooms" }))
   }
 })
 
