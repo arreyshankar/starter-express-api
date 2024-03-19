@@ -104,7 +104,7 @@ app.post('/AddPatient', async(req,res) => {
   }
 
   const patients = database.collection("patients")
-  const result = await rooms.insertOne(patient)
+  const result = await patients.insertOne(patient)
   console.log(`A Patient document was inserted with the _id: ${result.insertedId}`);
   if(result != null){
     var obj = { message: "Patient Added Successfully" }
