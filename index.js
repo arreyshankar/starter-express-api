@@ -129,6 +129,16 @@ app.post('/AddPatient', async(req,res) => {
   }
 })
 
+app.get('/GetNotifications', async(req,res) => {
+  const notifications = database.collection('notifications')
+  const result = await notifications.find().toArray()
+  if(result != null){
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    res.status(201).send(JSON.stringify({ message: "Error Getting notifications" }))
+  }
+})
+
 app.listen(PORT, () => {
   console.log("listening for requests");
 })
