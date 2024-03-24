@@ -139,6 +139,36 @@ app.get('/GetNotifications', async(req,res) => {
   }
 })
 
+app.get('/GetMedicines', async(req,res) => {
+  const medicines = database.collection('medicines')
+  const result = await medicines.find().toArray()
+  if(result != null){
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    res.status(201).send(JSON.stringify({ message: "Error Getting medicines" }))
+  }
+})
+
+app.post('AddMedicine', async(req,res) => {
+  const medicine = {
+    MedicineName : req.body.MedicineName,
+    MedicineID : req.body.MedicineID,
+    MedicineQty : req.body.MedicineQty
+  }
+
+  const medicines = database.collection('medicines')
+  const result = await medicines.insertOne(medicine)
+  console.log(`A Medicine document was inserted with the _id: ${result.insertedId}`);
+  if(result != null){
+    var obj = { message: "Medicine Added Successfully" }
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    var obj = { message: "Error while Adding" }
+    res.status(201).send(JSON.stringify(obj))
+  }
+})
+
+
 app.listen(PORT, () => {
   console.log("listening for requests");
 })
