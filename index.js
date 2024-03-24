@@ -149,7 +149,7 @@ app.get('/GetMedicines', async(req,res) => {
   }
 })
 
-app.post('AddMedicine', async(req,res) => {
+app.post('/AddMedicine', async(req,res) => {
   const medicine = {
     MedicineName : req.body.MedicineName,
     MedicineID : req.body.MedicineID,
