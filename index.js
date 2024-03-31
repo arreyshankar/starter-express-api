@@ -168,7 +168,7 @@ app.post('/AddMedicine', async(req,res) => {
   }
 })
 
-app.post('/GetPatients', async(req,res) => {
+app.get('/GetPatients', async(req,res) => {
   const doctors = database.collection('patients')
   const result = await doctors.find().toArray()
   if(result != null){
