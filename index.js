@@ -168,6 +168,15 @@ app.post('/AddMedicine', async(req,res) => {
   }
 })
 
+app.post('/GetPatients', async(req,res) => {
+  const doctors = database.collection('patients')
+  const result = await doctors.find().toArray()
+  if(result != null){
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    res.status(201).send(JSON.stringify({ message: "Error Getting Patients" }))
+  }
+});
 
 app.listen(PORT, () => {
   console.log("listening for requests");
