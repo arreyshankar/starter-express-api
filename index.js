@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); 
 const client = new MongoClient(uri);
 const database = client.db("mevo");
+const patientsCollection = database.collection('patients')
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
@@ -187,7 +188,16 @@ app.post('/DeletePatient', async(req,res) => {
     PatientAddress : req.body.PatientAddress,
     PatientGender : req.body.PatientGender,
   }
-  console.log(JSON.stringify(patient))
+
+  const result = await patientsCollection.deleteOne(patient)
+  console.log(`A Patient document was deleted with the _id: ${result.insertedId}`);
+  if(result != null){
+    var obj = { message: "Patient Deleted Successfully" }
+    res.status(200).send(JSON.stringify(result))
+  } else if(result == null){
+    var obj = { message: "Error while Deleting" }
+    res.status(201).send(JSON.stringify(obj))
+  }
 });
 
 app.listen(PORT, () => {
