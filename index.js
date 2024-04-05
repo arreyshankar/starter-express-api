@@ -179,7 +179,7 @@ app.get('/GetPatients', async(req,res) => {
 });
 
 app.post('/DeletePatient', async(req,res) => {
-  console.log(req.body._id)
+  console.log(JSON.stringify(req.body))
 });
 
 app.listen(PORT, () => {
