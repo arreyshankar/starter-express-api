@@ -113,6 +113,7 @@ app.post('/AddPatient', async(req,res) => {
     PatientContact : req.body.PatientContact,
     PatientAddress : req.body.PatientAddress,
     PatientGender : req.body.PatientGender,
+    PatientImage : req.body.PatientImage
   }
 
   let base64Image = req.body.PatientImage.split(';base64,').pop();
