@@ -187,7 +187,7 @@ app.post('/DeletePatient', async(req,res) => {
   if(result.deletedCount > 0){
     console.log(`A Patient document was deleted with the _id: ${req.body._id}`);
     var obj = { message: "Patient Deleted Successfully" }
-    res.status(200).send(JSON.stringify(result))
+    res.status(200).send(JSON.stringify(obj))
   } else {
     var obj = { message: "Error while Deleting" }
     res.status(201).send(JSON.stringify(obj))
