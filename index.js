@@ -181,7 +181,7 @@ app.get('/GetPatients', async(req,res) => {
 
 app.post('/DeletePatient', async(req,res) => {
   const patient = {
-    PatientID : req.body._id,
+    _id : req.body._id,
     PatientName : req.body.PatientName,
     PatientAge : req.body.PatientAge,
     PatientContact : req.body.PatientContact,
@@ -190,7 +190,7 @@ app.post('/DeletePatient', async(req,res) => {
   }
 
   const result = await patientsCollection.deleteOne(patient)
-  console.log(`A Patient document was deleted with the _id: ${result.insertedId}`);
+  console.log(`A Patient document was deleted with the _id: ${patient._id}`);
   if(result != null){
     var obj = { message: "Patient Deleted Successfully" }
     res.status(200).send(JSON.stringify(result))
