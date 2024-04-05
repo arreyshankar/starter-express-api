@@ -180,19 +180,6 @@ app.get('/GetPatients', async(req,res) => {
 
 app.post('/DeletePatient', async(req,res) => {
   console.log(req.body._id)
-  const patient_id = { _id : req.body._id }
-  const patients = database.collection('patients')
-  const result = await patients.deleteOne(patient_id, function(err, obj){
-    if(err) throw err
-    console.log("Document deleted with _id" + req.body._id)
-  })
-  if(result != null){
-    var obj = { message: "Deleted Successfully" }
-    res.status(200).send(JSON.stringify(result))
-  } else if(result == null){
-    var obj = { message: "Error while Deleting" }
-    res.status(201).send(JSON.stringify(obj))
-  }
 });
 
 app.listen(PORT, () => {
