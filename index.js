@@ -183,6 +183,7 @@ app.get('/GetPatients', async(req,res) => {
 app.post('/DeletePatient', async(req,res) => {
   
   console.log(JSON.stringify(req.body))
+  /*
   const result = await patientsCollection.deleteOne(req.body)
   if(result.deletedCount > 0){
     console.log(`A Patient document was deleted with the _id: ${req.body._id}`);
@@ -192,6 +193,7 @@ app.post('/DeletePatient', async(req,res) => {
     var obj = { message: "Error while Deleting" }
     res.status(201).send(JSON.stringify(obj))
   }
+  */
 });
 
 app.listen(PORT, () => {
