@@ -3,6 +3,7 @@ const fs = require("fs")
 const { MongoClient } = require("mongodb");
 const app = express()
 const bodyParser = require('body-parser'); 
+const { mongo } = require('mongoose');
 const PORT = 3000
 const uri = "mongodb+srv://sarveshkumar10101:sarvesh121@testingcluster.tg9uqrx.mongodb.net/?retryWrites=true&w=majority&appName=TestingCluster";
 app.use(bodyParser.json()); 
@@ -181,7 +182,7 @@ app.get('/GetPatients', async(req,res) => {
 
 app.post('/DeletePatient', async(req,res) => {
   const patient = {
-    _id : req.body._id,
+    _id : new mongo.ObjectId(req.body._id),
     PatientName : req.body.PatientName,
     PatientAge : req.body.PatientAge,
     PatientContact : req.body.PatientContact,
