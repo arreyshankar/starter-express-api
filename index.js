@@ -179,7 +179,15 @@ app.get('/GetPatients', async(req,res) => {
 });
 
 app.post('/DeletePatient', async(req,res) => {
-  console.log(JSON.stringify(req.body))
+  const patient = {
+    PatientID : req.body._id,
+    PatientName : req.body.PatientName,
+    PatientAge : req.body.PatientAge,
+    PatientContact : req.body.PatientContact,
+    PatientAddress : req.body.PatientAddress,
+    PatientGender : req.body.PatientGender,
+  }
+  console.log(JSON.stringify(patient))
 });
 
 app.listen(PORT, () => {
