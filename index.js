@@ -188,7 +188,7 @@ app.post('/DeletePatient', async(req,res) => {
     PatientAddress : req.body.PatientAddress,
     PatientGender : req.body.PatientGender,
   }
-
+  console.log(JSON.stringify(patient))
   const result = await patientsCollection.deleteOne(patient)
   if(result.deletedCount > 0){
     console.log(`A Patient document was deleted with the _id: ${req.body._id}`);
