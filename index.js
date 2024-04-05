@@ -181,8 +181,7 @@ app.get('/GetPatients', async(req,res) => {
 });
 
 app.post('/DeletePatient', async(req,res) => {
-  app.use(bodyParser.text())
-  console.log(JSON.stringify(req.body))
+  console.log(req.body)
   /*
   const result = await patientsCollection.deleteOne(req.body)
   if(result.deletedCount > 0){
