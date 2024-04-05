@@ -182,8 +182,8 @@ app.get('/GetPatients', async(req,res) => {
 
 app.post('/DeletePatient', async(req,res) => {
   
-  console.log(JSON.stringify(req.body._id))
-  const result = await patientsCollection.deleteOne({_id : mongo.ObjectId(req.body._id)})
+  console.log(JSON.stringify(req.body))
+  const result = await patientsCollection.deleteOne({_id : mongo.ObjectId(req.body)})
   if(result.deletedCount > 0){
     console.log(`A Patient document was deleted with the _id: ${req.body._id}`);
     var obj = { message: "Patient Deleted Successfully" }
