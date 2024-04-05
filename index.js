@@ -181,7 +181,7 @@ app.get('/GetPatients', async(req,res) => {
 
 app.post('/DeletePatient', async(req,res) => {
   const patient = {
-    _id : req.body._id,
+    _id : ObjectId(req.body._id),
     PatientName : req.body.PatientName,
     PatientAge : req.body.PatientAge,
     PatientContact : req.body.PatientContact,
