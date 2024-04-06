@@ -197,7 +197,7 @@ app.post('/DeletePatient', async(req,res) => {
 });
 
 app.post('/DeleteRoom', async(req,res) => {
-const result = await roomsCollection.deleteOne({ roomNo : new mongo.ObjectId(req.body.roomNo)})
+const result = await roomsCollection.deleteOne({ roomNo : req.body.roomNo })
 if(result.deletedCount > 0){
   console.log(`A Room document was deleted with the roomNo: ${req.body.roomNo}`);
   var obj = { message: "Room Deleted Successfully" }
